@@ -26,10 +26,14 @@ enum modes {
  * Default frame count = 20
 */
 
-Effect effect1(FIRE, leds, 0, 5, 5);
-Effect effect2(TV, leds, 6, 6, 15);
-Effect effect3(STROBE, leds, 9, 19, 5);
-Effect effect4(XMASTREE, leds, 7, 8);
+//Effect effect1(FIRE, leds, 0, 5, 5);
+//Effect effect2(TV, leds, 6, 6, 15);
+//Effect effect3(STROBE, leds, 9, 19, 5);
+//Effect effect4(XMASTREE, leds, 7, 8);
+
+Effect effect1(FIRE, leds, 2, 2, 5);
+Effect effect2(TV, leds, 3, 3, 15);
+Effect effect3(XMASTREE, leds, 5, 5);
 
 void setup() {
   Serial.begin(9600);
@@ -40,6 +44,7 @@ void setup() {
 }
 
 void loop() {
+  leds[8] = CHSV(64, 255, 200);
   updateAll();
   FastLED.show();
   FastLED.delay(1000 / FRAMES_PER_SECOND);
@@ -49,5 +54,5 @@ void updateAll() {
   effect1.Update();
   effect2.Update();
   effect3.Update();
-  effect4.Update();
+//  effect4.Update();
 }
