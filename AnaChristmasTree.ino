@@ -6,13 +6,10 @@
 #include <FastLED.h>
 #include "effect.h"
 
-#define NUM_LEDS 20
-#define DATA_PIN 4
-#define CLOCK_PIN 7
-
 #define FRAMES_PER_SECOND  120
 
-CRGB leds[NUM_LEDS];
+CRGB leds[20];
+CRGB leds2[50];
 
 enum modes {
   FIRE,
@@ -35,11 +32,13 @@ Effect effect1(FIRE, leds, 2, 2, 5);
 Effect effect2(TV, leds, 3, 3, 15);
 Effect effect3(XMASTREE, leds, 5, 5);
 
+Effect effect4(FIRE, leds2, 0, 49, 5);
+
 void setup() {
   Serial.begin(9600);
   Serial.println("Starting...");
-  //  LEDS.addLeds<WS2812, DATA_PIN, RGB>(leds, NUM_LEDS);
-  FastLED.addLeds<WS2801, DATA_PIN, CLOCK_PIN, RGB>(leds, NUM_LEDS);
+  FastLED.addLeds<WS2812, 13, RGB>(leds2, 50);
+  FastLED.addLeds<WS2801, 4, 7, RGB>(leds, 20);
   FastLED.setBrightness(84);
 }
 
@@ -54,5 +53,5 @@ void updateAll() {
   effect1.Update();
   effect2.Update();
   effect3.Update();
-//  effect4.Update();
+  effect4.Update();
 }
